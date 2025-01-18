@@ -7,9 +7,15 @@ use App\Models\News; // Убедитесь, что у вас есть модел
 
 class NewsController extends Controller
 {
+
+    public function dashboard()
+    {
+        $news = News::latest()->take(3)->get(); // Get the 3 latest news items
+        return view('dashboard', compact('news'));
+    }
     public function index()
     {
-        $news = News::all(); // Получаем все новости
+        $news = News::latest()->paginate(6); // Получаем все новости
         return view('news.index', compact('news')); // Убедитесь, что путь к вашему шаблону правильный
     }
     public function create()
@@ -44,4 +50,5 @@ class NewsController extends Controller
         // Перенаправление с сообщением об успехе
         return redirect()->route('news')->with('success', 'Новость успешно создана!');
     }
+
 }

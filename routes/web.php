@@ -25,10 +25,8 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
+    Route::get('/dashboard', [NewsController::class, 'dashboard'])->name('dashboard');
 
 });
 
@@ -50,3 +48,4 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::get('/news', [NewsController::class, 'index'])->name('news'); // Для отображения списка новостей
 Route::get('/news/create', [NewsController::class, 'create'])->name('news.create'); // Для создания новости
 Route::post('/news', [NewsController::class, 'store'])->name('news.store'); // Для сохранения новости
+
