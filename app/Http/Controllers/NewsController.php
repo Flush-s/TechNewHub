@@ -22,7 +22,6 @@ class NewsController extends Controller
     {
         return view('news.create'); // Убедитесь, что путь к вашему шаблону правильный
     }
-
     public function store(Request $request)
     {
 
@@ -49,6 +48,17 @@ class NewsController extends Controller
 
         // Перенаправление с сообщением об успехе
         return redirect()->route('news')->with('success', 'Новость успешно создана!');
+    }
+    public function deleteList()
+    {
+        $news = News::select('id', 'name')->get();
+        return view('news.delete-list', compact('news'));
+    }
+
+    public function destroy(News $news)
+    {
+        $news->delete();
+        return redirect()->route('news.delete-list')->with('success', 'Новость успешно удалена');
     }
 
 }

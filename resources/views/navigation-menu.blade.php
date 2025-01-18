@@ -22,7 +22,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('news.create') }}" :active="request()->routeIs('create')">
+                    <x-nav-link href="" :active="request()->routeIs('create')">
                         {{ __('Создать новость') }}
                     </x-nav-link>
                 </div>
@@ -32,6 +32,11 @@
             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                 <x-nav-link href="{{ route('admin') }}" :active="request()->routeIs('admin')">
                     {{ __('Admin Panel') }}
+                </x-nav-link>
+            </div>
+            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <x-nav-link href="{{ route('news.delete-list') }}" :active="request()->routeIs('news.delete-list')">
+                    {{ __('Удаление новостей') }}
                 </x-nav-link>
             </div>
 
@@ -51,6 +56,7 @@
                                     </button>
                                 </span>
                             </x-slot>
+                            
 
                             <x-slot name="content">
                                 <div class="w-60">
@@ -58,6 +64,7 @@
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         {{ __('Manage Team') }}
                                     </div>
+                                    
 
                                     <!-- Team Settings -->
                                     <x-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">

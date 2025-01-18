@@ -47,5 +47,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::get('/news', [NewsController::class, 'index'])->name('news'); // Для отображения списка новостей
 Route::get('/news/create', [NewsController::class, 'create'])->name('news.create'); // Для создания новости
+Route::get('/news/delete', [NewsController::class, 'deleteList'])->name('news.delete-list');
+Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
 Route::post('/news', [NewsController::class, 'store'])->name('news.store'); // Для сохранения новости
 
